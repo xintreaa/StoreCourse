@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Button } from "@mui/material";
 
 function App() {
     const [products, setProducts] = useState<{ name: string, price: number }[]>([]);
@@ -22,7 +23,7 @@ function App() {
                     <li key={index}>{item.name} - {item.price}</li>
                 ))}
             </ul>
-            <button onClick={addProduct}>Add Product</button>
+            <Button variant='contained' onClick={addProduct}>Add Product</Button>
         </div>
     );
 }

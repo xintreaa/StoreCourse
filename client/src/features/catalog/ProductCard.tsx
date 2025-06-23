@@ -8,6 +8,13 @@ export default function ProductCard({product}: Props) {
     return (
         <Card
             elevation={3}
+            sx={{
+                width: 250,
+                borderRadius: 3,
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'space-between',
+            }}
         >
             <CardMedia
                 sx={{ height: 240, backgroundSize: 'cover' }}
@@ -24,13 +31,13 @@ export default function ProductCard({product}: Props) {
                 
                 <Typography
                     variant="h6"
-                    sx={{color: 'seconadary.main'} }
+                    sx={{color: 'secondary.main'} }
                 >
                     ${(product.price / 100).toFixed(2)}
                 </Typography>
             </CardContent>
             <CardActions
-                sx={{ justifyContent: 'space-between' }}
+                sx={{justifyContent: 'space-between' }}
             >
                 <Button>Add to cart</Button>
                 <Button>View the detail</Button>

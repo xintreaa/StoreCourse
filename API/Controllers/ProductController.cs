@@ -24,5 +24,11 @@ namespace API.Controllers
             return product;
         }
 
+        [HttpGet("brands")]
+        public async Task<ActionResult<List<string>>> GetBrands()
+        {
+            return await context.Products.Select(p => p.Brand).Distinct().ToListAsync();
+        }
+
     }
 }
