@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import Catalog from "../../features/catalog/Catalog";
-import { Button, Container, Typography } from "@mui/material";
+import { Container } from "@mui/material";
+import NavBar from "./NavBar";
 
 function App() {
     const [products, setProducts] = useState<{
@@ -21,27 +22,27 @@ function App() {
 
     }, []);
 
-    const addProduct = () => {
-        setProducts(prevState => [...prevState,
-            {
-            id: prevState.length + 1,
-            name: 'product ' + (prevState.length + 1),
-            price: (prevState.length + 100) + 100,
-            quantityInStock: 100,
-            description: 'test',
-            pictureUrl: 'https://picsum.photo/200',
-            type: 'test',
-            brand: 'test'
-            }])
-    }
+    //const addProduct = () => {
+    //    setProducts(prevState => [...prevState,
+    //        {
+    //        id: prevState.length + 1,
+    //        name: 'product ' + (prevState.length + 1),
+    //        price: (prevState.length + 100) + 100,
+    //        quantityInStock: 100,
+    //        description: 'test',
+    //        pictureUrl: 'https://picsum.photo/200',
+    //        type: 'test',
+    //        brand: 'test'
+    //        }])
+    //}
 
     return (
-        <Container maxWidth='xl'>
-            <Typography variant='h3'>Re-Store</Typography>
-            <Button variant='contained' onClick={addProduct}>Add Product</Button>
-            <Catalog products={products} addProduct={addProduct} />
-     
+    <>
+        <NavBar/>
+            <Container maxWidth='xl' sx={{mt:12}}>
+            <Catalog products={products}/>
         </Container>
+    </>
     );
 }
 

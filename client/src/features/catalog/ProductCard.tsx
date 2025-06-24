@@ -17,7 +17,7 @@ export default function ProductCard({product}: Props) {
             }}
         >
             <CardMedia
-                sx={{ height: 240, backgroundSize: 'cover' }}
+                sx={{ height: 230, backgroundSize: 'cover' }}
                 image={product.pictureUrl}
                 title={product.name}
             />
@@ -40,7 +40,7 @@ export default function ProductCard({product}: Props) {
                 sx={{justifyContent: 'space-between' }}
             >
                 <Button>Add to cart</Button>
-                <Button>View the detail</Button>
+                <Button>View</Button>
             </CardActions>
         </Card>
     )
