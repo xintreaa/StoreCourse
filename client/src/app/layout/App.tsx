@@ -1,48 +1,41 @@
-import { useState, useEffect } from "react";
-import Catalog from "../../features/catalog/Catalog";
-import { Container } from "@mui/material";
+import { useState} from "react";
+import { Box, Container, createTheme, CssBaseline, ThemeProvider } from "@mui/material";
 import NavBar from "./NavBar";
+import { Outlet } from "react-router-dom";
 
 function App() {
-    const [products, setProducts] = useState<{
-        id: number,
-        name: string,
-        price: number, quantityInStock: number,
-        description: string,
-        pictureUrl: string,
-        type: string,
-        brand: string
-    }[]>([]);
+ 
+    const [darkMode, setDarkMode] = useState<boolean>(true); // This can be replaced with a state or context for dynamic theme switching]
+    const paletteType = darkMode ? 'dark' : 'light';
 
+    const toggleDarkMode = () => {
+        setDarkMode(!darkMode);
+    }
 
-    useEffect(() => {
-        fetch('http://localhost:5045/api/product')
-            .then(response => response.json())
-            .then(data => setProducts(data));
-
-    }, []);
-
-    //const addProduct = () => {
-    //    setProducts(prevState => [...prevState,
-    //        {
-    //        id: prevState.length + 1,
-    //        name: 'product ' + (prevState.length + 1),
-    //        price: (prevState.length + 100) + 100,
-    //        quantityInStock: 100,
-    //        description: 'test',
-    //        pictureUrl: 'https://picsum.photo/200',
-    //        type: 'test',
-    //        brand: 'test'
-    //        }])
-    //}
+    const theme = createTheme({
+        palette: {
+            mode: paletteType,
+            background: {
+                default: paletteType === 'dark' ? '#121212' : '#eaeaea',
+            }
+        }
+    })
 
     return (
-    <>
-        <NavBar/>
+        <ThemeProvider theme={theme}>
+            <CssBaseline />
+            <NavBar toggleDarkMode={toggleDarkMode} darkMode={darkMode} />
+            <Box sx={{
+                minHeight: '100vh',
+                background: darkMode
+                    ? 'radial-gradient(circle, #1e3aBa, #111B27)'
+                    : 'radial-gradient(circle, #baecf9, #f0f9ff)',
+                    py: 6}}>
             <Container maxWidth='xl' sx={{mt:12}}>
-            <Catalog products={products}/>
-        </Container>
-    </>
+            <Outlet/>
+                </Container>
+       </Box>
+    </ThemeProvider>
     );
 }
 
