@@ -1,4 +1,5 @@
 ﻿using API.Entities;
+using API.Models;
 using Microsoft.EntityFrameworkCore;
 namespace API.Data
 {   /*options - містить connection string
@@ -10,6 +11,11 @@ namespace API.Data
     public class StoreContext(DbContextOptions options) : DbContext(options)
     {
         public required DbSet<Product> Products { get; set; }
+
+        //public required DbSet<Comission> Comissions { get; set; }
+        //public required DbSet<Client> Clients { get; set; }
+
+
 
     }
 }
