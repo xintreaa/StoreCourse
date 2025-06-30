@@ -1,24 +1,18 @@
-import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom"
-import { Product } from "../../app/models/product";
 import {Button, Divider, Grid2, Table, TableBody, TableCell, TableContainer, TableRow, TextField, Typography } from "@mui/material/";
+import { useFetchProductDetailsQuery } from "./catalogApi";
 
 
 export default function ProductDetails() {
 
     const { id } = useParams();
-    const [product, setProduct] = useState<Product | null>(null); // It could be Product or it could be null if not found
 
-    useEffect(() => {
-        fetch(`http://localhost:5045/api/product/${id}`)
-            .then(response => response.json())
-            .then(data => setProduct(data))
-            .catch(error => console.error('Error fetching product:', error));
-    }, [id]) // [] - To avoid infinite loop
+    const { data: product, isLoading } = useFetchProductDetailsQuery(id ? +id:0)
+
+    if (isLoading) return <Typography variant="h5" sx={{ mt: 2, textAlign: 'center' }}>Loading...</Typography>;
 
     if (!product) return <Typography variant="h5" sx={{ mt: 2, textAlign: 'center' }}>Product not found</Typography>;
     const productDetails = [
-        { label: 'Name', value: product.name },
         { label: 'Description', value: product.description },
         { label: 'Quanity in stock', value: product.quantityInStock},
         { label: 'Brand', value: product.brand },
