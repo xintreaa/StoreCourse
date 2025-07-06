@@ -1,5 +1,4 @@
-﻿using API.Entities;
-using API.Models;
+﻿using API.Models;
 using Microsoft.EntityFrameworkCore;
 namespace API.Data
 {   /*options - містить connection string
@@ -12,10 +11,20 @@ namespace API.Data
     {
         public required DbSet<Product> Products { get; set; }
 
+        public required DbSet<ShoppingCart> Baskets { get; set; }
         //public required DbSet<Comission> Comissions { get; set; }
         //public required DbSet<Client> Clients { get; set; }
 
-
+        //protected override void OnModelCreating(ModelBuilder modelBuilder)
+        //{
+        //    base.OnModelCreating(modelBuilder);
+        //    modelBuilder.Entity<ShoppingCart>()
+        //        .HasMany(c => c.Items)
+        //        .WithOne()
+        //        .OnDelete(DeleteBehavior.Cascade);
+        //    // Встановлюємо каскадне видалення для ShoppingCart
+        //    // при видаленні ShoppingCart видаляються всі BasketItem
+        //}
 
     }
 }

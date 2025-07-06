@@ -1,5 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
-using API.Entities;
+﻿using API.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace API.Data
 {
@@ -225,6 +225,6 @@ namespace API.Data
 
             context.SaveChanges();
         }
-        
+
     }
 }

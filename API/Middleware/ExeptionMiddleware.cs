@@ -1,6 +1,6 @@
-﻿using System.Net;
+﻿using Microsoft.AspNetCore.Mvc;
+using System.Net;
 using System.Text.Json;
-using Microsoft.AspNetCore.Mvc;
 
 namespace API.Middleware
 {
@@ -20,7 +20,7 @@ namespace API.Middleware
             {
                 await next(context);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 await HandleExeption(context, ex);
             }
